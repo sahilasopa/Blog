@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html style="height: 97vh;width: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="{% static 'assets/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Dark.css' %}">
+</head>
+
+<body>
+<div class="login-dark">
+    <form method="post">
+        {% csrf_token %}
+        <h2 class="sr-only">Login Form</h2>
+        <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+        <div class="form-group"><input class="form-control" required="" type="text" name="username" placeholder="Username"></div>
+        <div class="form-group"><input class="form-control" required="" type="password" name="pass" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Log In</button>
+        </div>
+        <h6 STYLE="text-align: center">{{ error }}</h6>
+        <a class="forgot" style="font-size: 16px;color: white" href="/register">New User? SignUp</a>
+        <a class="forgot" href="/reset_password">Forgot password?</a>
+    </form>
+</div>
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/clean-blog.js' %}"></script>
+</body>
+</html>
