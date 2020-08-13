@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as passreset
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('', views.home),
@@ -29,4 +32,5 @@ urlpatterns = [
     path('reset_password_complete/',
          passreset.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'),
          name='password_reset_complete'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
+              static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -17,11 +17,9 @@ def home(request):
 
 
 def about(request):
-    user = BlogUser.objects.all()
-    blog = Blog.objects.all()
+    user = BlogUser.objects.get(user=request.user)
     context = {
         'user': user,
-        'blog': blog,
     }
     return render(request, 'about.html', context)
 

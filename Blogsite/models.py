@@ -16,7 +16,7 @@ class Blog(models.Model):
     user = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
     heading = models.CharField(max_length=100)
     blog = models.TextField()
-    image = models.ImageField(blank=True, null=True, upload_to='media')
+    image = models.ImageField(blank=True, null=True, upload_to='media' ,)
     uploaded_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -26,11 +26,8 @@ class Blog(models.Model):
         return f"/post/{self.id}/"
 
 
-
 class Contact(models.Model):
     name = models.CharField(max_length=40)
     email = models.EmailField()
     contact_no = models.CharField(max_length=12, blank=True)
     message = models.TextField()
-
-

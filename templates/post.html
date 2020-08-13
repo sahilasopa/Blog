@@ -37,13 +37,32 @@
             <div class="col-md-10 col-lg-8 mx-auto">
                 <div class="post-heading">
                     <h1>{{ blog.heading }}</h1>
-                    <h2 class="subheading"></h2><span class="meta">Posted by&nbsp;<a href="#">{{ blog.user }}</a>&nbsp;on {{ blog.uploaded_on }}</span>
+                    <h2 class="subheading"></h2><span
+                        class="meta">Posted by&nbsp;{{ blog.user }}&nbsp;on {{ blog.uploaded_on }}</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
+{#<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">#}
+{#    <div class="carousel-inner">#}
+{#        {% if blog.image %}#}
+{#            {% for blog in blog %}#}
+{#            <div class="carousel-item active" style="width: auto;height: 50vh;">#}
+{#                <img class="d-block w-100" src="{{ blog.image.url }}" alt="Image Not Found">#}
+{#            {% endfor %}#}
+{#            </div>#}
+{#        {% endif %}#}
+{#    </div>#}
+{#    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">#}
+{#        <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+{#        <span class="sr-only">Previous</span>#}
+{#    </a>#}
+{#    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">#}
+{#        <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+{#        <span class="sr-only">Next</span>#}
+{#    </a>#}
+{#</div>#}
 <article>
     <div class="container">
         <div class="row">
@@ -59,14 +78,14 @@
         <div class="row">
             <div class="col-md-10 col-lg-8 mx-auto">
                 <ul class="list-inline text-center">
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
-                            class="fa fa-instagram fa-stack-1x fa-inverse"></i></span></li>
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
-                            class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i></span></li>
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
-                            class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
+                    <a href="https://stackoverflow.com/users/13780862/sahil-asopa"><li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i></span></li></a>
+                    <a href="https://www.instagram.com/pip_install_programming/"><li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-instagram fa-stack-1x fa-inverse"></i></span></li></a>
+                    <a href="https://github.com/sahilasopa"> <li class="list-inline-item" ><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-github fa-stack-1x fa-inverse"></i></span></li></a>
                 </ul>
-                <p class="text-muted copyright">Copyright&nbsp;©&nbsp;Brand 2020</p>
+                <p class="text-muted copyright">Copyright&nbsp;©&nbsp;PyBlog 2020</p>
             </div>
         </div>
     </div>

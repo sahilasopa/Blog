@@ -48,7 +48,7 @@
         <div class="text-center">
             <h4 style="color: #212529;font-size: 45px;">Write A Blog</h4>
         </div>
-        <hr class="modern-form__hr">
+
         <div class="modern-form__form-container">
             <form method="post">
                 {% csrf_token %}
@@ -56,7 +56,7 @@
                     <div class="col col-contact">
                         <div class="form-group modern-form__form-group--padding-r">
                             <input name="title" class="form-control input input-tr" type="text" required=""
-                                    placeholder="Blog Title">
+                                   placeholder="Blog Title">
                             <div class="line-box">
                                 <div class="line"></div>
                             </div>
@@ -69,11 +69,23 @@
                                 class="form-control input modern-form__form-control--textarea"
                                 placeholder="Blog Content" name="content" rows="10" required=""></textarea>
                             <div class="line-box">
-                                <div class="line"></div>
+                                <div class="line">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+{#                <div class="form-row">#}
+{#                    <div class="col col-contact">#}
+{#                        <div class="form-group modern-form__form-group--padding-r">#}
+{#                            <input name="image" class="form-control input input-tr" accept=".png, .jpg, .jpeg" type="file"#}
+{#                                   placeholder="Blog Title" multiple>#}
+{#                            <div class="line-box">#}
+{#                                <div class="line"></div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
                 <div class="form-row">
                     <div class="col text-center">
                         <button class="btn btn-primary submit-now" type="submit">Submit Now</button>
@@ -89,18 +101,18 @@
         <div class="row">
             <div class="col-md-10 col-lg-8 mx-auto">
                 <ul class="list-inline text-center">
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
-                            class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></li>
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
-                            class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></li>
-                    <li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
-                            class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
+                    <a href="https://stackoverflow.com/users/13780862/sahil-asopa"><li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i></span></li></a>
+                    <a href="https://www.instagram.com/pip_install_programming/"><li class="list-inline-item"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-instagram fa-stack-1x fa-inverse"></i></span></li></a>
+                    <a href="https://github.com/sahilasopa"> <li class="list-inline-item" ><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i
+                            class="fa fa-github fa-stack-1x fa-inverse"></i></span></li></a>
                 </ul>
                 <p class="text-muted copyright">Copyright&nbsp;©&nbsp;PyBlog 2020</p>
             </div>
         </div>
     </div>
-</footer>
+</footer
 <script src="{% static 'assets/js/jquery.min.js' %}"></script>
 <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'assets/js/clean-blog.js' %}"></script>
