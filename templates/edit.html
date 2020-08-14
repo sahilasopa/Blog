@@ -31,6 +31,12 @@
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/contact">Contact us</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/new/post">Create a Blog Post</a>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/my/blogs">My Blogs</a>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a>
+                            {% else %}
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/login">Login</a>
+                        <li class="nav-item" role="presentation"><a class="nav-link" href="/register">Register</a>
+                    {% endif %}
             </ul>
         </div>
     </div>
@@ -78,5 +84,4 @@
 <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'assets/js/clean-blog.js' %}"></script>
 </body>
-
 </html>

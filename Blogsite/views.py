@@ -24,6 +24,7 @@ def about(request):
     return render(request, 'about.html', context)
 
 
+@login_required(login_url='/login')
 def contact(request):
     user = BlogUser.objects.all()
     blog = Blog.objects.all()
@@ -105,12 +106,12 @@ def signup(request):
     else:
         return render(request, 'register.html')
 
-
+@login_required(login_url='/login')
 def logout(request):
     auth.logout(request)
     return redirect('/login')
 
-
+@login_required(login_url='/login')
 def delete(request, pk):
     blog = Blog.objects.get(id=pk)
     if request.method == 'POST':
@@ -121,7 +122,7 @@ def delete(request, pk):
     }
     return render(request, 'delete.html', context)
 
-
+@login_required(login_url='/login')
 def edit(request, pk):
     blog = Blog.objects.get(id=pk)
     form = BlogEditForm(instance=blog)
