@@ -15,7 +15,7 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
-
+@login_required(login_url='/login')
 def about(request):
     user = BlogUser.objects.get(user=request.user)
     context = {
