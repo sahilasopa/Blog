@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import BlogEditForm
 
-
+@login_required(login_url='/login')
 def home(request):
     user = BlogUser.objects.all()
     blog = Blog.objects.all().order_by('-id')[:10]
@@ -15,6 +15,8 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
+
+@login_required(login_url='/login')
 def about(request):
     return render(request, 'about.html')
 
