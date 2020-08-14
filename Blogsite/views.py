@@ -15,13 +15,8 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
-@login_required(login_url='/login')
 def about(request):
-    user = BlogUser.objects.get(user=request.user)
-    context = {
-        'user': user,
-    }
-    return render(request, 'about.html', context)
+    return render(request, 'about.html')
 
 
 @login_required(login_url='/login')
