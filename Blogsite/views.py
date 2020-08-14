@@ -89,19 +89,24 @@ def signup(request):
                 user = User.objects.get(username=request.POST['username'])
                 return render(request, 'register.html', {'error': 'Username Taken'})
             except User.DoesNotExist:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'],
-                                                email=request.POST['email'])
-                name = request.POST['name']
-                username = request.POST['username']
-                email = request.POST['email']
-                users = BlogUser(user=user, full_name=name, email=email, username=username)
-                users.save()
-                auth.login(request, user)
-                return redirect('/')
+                try:
+                    email = User.objects.get(email=request.POST['email'])
+                    return render(request, 'register.html', {'error': 'Email already exists '})
+                except email.DoesNotExist:
+                    user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'],
+                                                    email=request.POST['email'])
+                    name = request.POST['name']
+                    username = request.POST['username']
+                    email = request.POST['email']
+                    users = BlogUser(user=user, full_name=name, email=email, username=username)
+                    users.save()
+                    auth.login(request, user)
+                    return redirect('/')
         else:
             return render(request, 'register.html', {'error': 'Password dosent match'})
     else:
         return render(request, 'register.html')
+
 
 @login_required(login_url='/login')
 def logout(request):
