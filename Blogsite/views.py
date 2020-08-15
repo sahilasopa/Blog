@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import BlogEditForm
 
+
 @login_required(login_url='/login')
 def home(request):
     user = BlogUser.objects.all()
@@ -86,22 +87,25 @@ def signup(request):
     if request.method == 'POST':
         if request.POST['password'] == request.POST['password-repeat']:
             try:
-                user = User.objects.get(username=request.POST['username'])
+                user = User.objects.get(username=request.POST['username'], email=request.POST['email'])
                 return render(request, 'register.html', {'error': 'Username Taken'})
+
             except User.DoesNotExist:
                 try:
-                    email = User.objects.get(email=request.POST['email'])
-                    return render(request, 'register.html', {'error': 'Email already exists '})
-                except email.DoesNotExist:
-                    user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'],
+                    user = User.objects.get(email=request.POST['email'])
+                    return render(request, 'register.html', {'error': 'Email Already Taken'})
+
+                except User.DoesNotExist:
+                    user = User.objects.create_user(username=request.POST['username'],
+                                                    password=request.POST['password'],
                                                     email=request.POST['email'])
-                    name = request.POST['name']
-                    username = request.POST['username']
-                    email = request.POST['email']
-                    users = BlogUser(user=user, full_name=name, email=email, username=username)
-                    users.save()
-                    auth.login(request, user)
-                    return redirect('/')
+                name = request.POST['name']
+                username = request.POST['username']
+                email = request.POST['email']
+                users = BlogUser(user=user, full_name=name, email=email, username=username)
+                users.save()
+                auth.login(request, user)
+                return redirect('/')
         else:
             return render(request, 'register.html', {'error': 'Password dosent match'})
     else:
@@ -113,6 +117,7 @@ def logout(request):
     auth.logout(request)
     return redirect('/login')
 
+
 @login_required(login_url='/login')
 def delete(request, pk):
     blog = Blog.objects.get(id=pk)
@@ -123,6 +128,7 @@ def delete(request, pk):
         'blog': blog,
     }
     return render(request, 'delete.html', context)
+
 
 @login_required(login_url='/login')
 def edit(request, pk):
