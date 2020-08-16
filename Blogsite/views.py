@@ -3,7 +3,7 @@ from .models import BlogUser, Blog, Contact
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .forms import BlogEditForm
+from .forms import BlogEditForm, NewBlogForm
 
 
 @login_required(login_url='/login')
@@ -41,24 +41,31 @@ def contact(request):
 
 @login_required(login_url='/login')
 def post(request, pk, name):
+    blogs = Blog.objects.all()
     user = BlogUser.objects.all()
     blog = Blog.objects.get(id=pk, heading=name)
     context = {
         'user': user,
         'blog': blog,
+        'blogs': blogs,
     }
     return render(request, 'post.html', context)
 
 
 @login_required(login_url='/login')
 def new_post(request):
+    form = NewBlogForm
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        user = BlogUser.objects.get(user=request.user)
-        Blog.objects.create(heading=title, user=user, blog=content)
+        form = NewBlogForm()
+        # title = request.POST['title']
+        # content = request.POST['content']
+        # user = BlogUser.objects.get(user=request.user)
+        # Blog.objects.create(heading=title, user=user, blog=content)
         return redirect('/')
-    return render(request, 'New Post.html')
+    context = {
+        'form': form
+    }
+    return render(request, 'New Post.html', context)
 
 
 @login_required(login_url='/login')
@@ -132,6 +139,7 @@ def delete(request, pk):
 
 @login_required(login_url='/login')
 def edit(request, pk):
+    blogs = Blog.objects.all()
     blog = Blog.objects.get(id=pk)
     form = BlogEditForm(instance=blog)
     if request.method == 'POST':
@@ -140,6 +148,7 @@ def edit(request, pk):
             form.save()
             return redirect('/')
     context = {
-        'form': form
+        'form': form,
+        'blogs': blogs,
     }
     return render(request, 'edit.html', context)

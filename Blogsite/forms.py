@@ -14,3 +14,18 @@ class BlogEditForm(forms.ModelForm):
         labels = {
             'heading': 'Title'
         }
+
+
+class NewBlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = ('heading', 'blog')
+
+        widgets = {
+            'heading': forms.TextInput(attrs={'class': 'form-control input input-tr'}),
+            'blog': forms.Textarea(
+                attrs={'class': 'form-control input modern-form__form-control--textarea', 'rows': 100}),
+        }
+        labels = {
+            'heading': ''
+        }

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from ckeditor.fields import RichTextField
 
 class BlogUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -15,7 +15,7 @@ class BlogUser(models.Model):
 class Blog(models.Model):
     user = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
     heading = models.CharField(max_length=100)
-    blog = models.TextField()
+    blog = RichTextField()
     image = models.ImageField(blank=True, null=True, upload_to='media')
     uploaded_on = models.DateTimeField(auto_now=True)
 
@@ -31,3 +31,8 @@ class Contact(models.Model):
     email = models.EmailField()
     contact_no = models.CharField(max_length=12, blank=True)
     message = models.TextField()
+
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+)

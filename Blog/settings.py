@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'whfd51$t(bluz(f#akirc&ugf6v^td62+%%rm+_@!k0uqj0fx('
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -25,7 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Blogsite',
     'crispy_forms',
+    'ckeditor'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
