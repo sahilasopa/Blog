@@ -54,13 +54,16 @@ def post(request, pk, name):
 
 @login_required(login_url='/login')
 def new_post(request):
-    form = NewBlogForm
+    form = NewBlogForm()
     if request.method == 'POST':
-        form = NewBlogForm()
-        # title = request.POST['title']
-        # content = request.POST['content']
-        # user = BlogUser.objects.get(user=request.user)
-        # Blog.objects.create(heading=title, user=user, blog=content)
+        userss = request.user
+        users = BlogUser.objects.get(user=userss)
+        form = NewBlogForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data['blog']
+            title = form.cleaned_data['heading']
+            user = users
+            Blog.objects.create(blog=content, user=user, heading=title)
         return redirect('/')
     context = {
         'form': form

@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-md-10 col-lg-8 mx-auto">
                 <div class="post-heading">
-                    <h1>{{ blog.heading }}</h1>
+                    <h1>{{ blog.heading|safe }}</h1>
                     <h2 class="subheading"></h2><span
                         class="meta">Posted by&nbsp;{{ blog.user }}&nbsp;on {{ blog.uploaded_on }}</span>
                 </div>
@@ -49,7 +49,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-lg-8 mx-auto">
-                <p>{{ blog.blog|linebreaks }}</p>
+                <p>{{ blog.blog|safe }}</p>
             </div>
         </div>
     </div>

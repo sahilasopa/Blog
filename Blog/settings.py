@@ -14,6 +14,24 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': [
+            ['Undo', 'Redo',
+             '-', 'Bold', 'Italic', 'Underline',
+             '-', 'Styles',
+             '-', 'Link', 'Unlink', 'Anchor',
+             '-', 'Format',
+             '-', 'SpellChecker', 'Scayt',
+             '-', 'Maximize',
+             '-', 'Language',
+             ],
+        ],
+        'height': '100%',
+        'width': '100%',
+        'toolbarCanCollapse': False,
+    },
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -27,7 +45,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'ckeditor'
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,7 +129,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
