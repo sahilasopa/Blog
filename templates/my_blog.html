@@ -50,8 +50,8 @@
                 <div class="col-md-10 col-lg-8">
                     <div class="post-preview">
                         <a href="{{ blog.get_absolute_url }}">
-                            <h2 class="post-title">{{ blog.heading }}</h2>
-                            <h3 class="post-subtitle">{{ blog.blog|truncatewords:15 }}</h3>
+                            <h2 class="post-title">{{ blog.heading|safe }}</h2>
+                            <h3 class="post-subtitle">{{ blog.blog|truncatewords:15|safe }}</h3>
                         </a>
                         <form method="post">
                             {% csrf_token %}
