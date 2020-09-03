@@ -9,7 +9,7 @@ from .forms import BlogEditForm, NewBlogForm
 @login_required(login_url='/login')
 def home(request):
     user = BlogUser.objects.all()
-    blog = Blog.objects.all().order_by('-id')[:10]
+    blog = Blog.objects.all().order_by('-id')[:1000]
     context = {
         'user': user,
         'blog': blog,
@@ -142,7 +142,6 @@ def delete(request, pk):
 
 @login_required(login_url='/login')
 def edit(request, pk):
-    blogs = Blog.objects.all()
     blog = Blog.objects.get(id=pk)
     form = BlogEditForm(instance=blog)
     if request.method == 'POST':
@@ -152,6 +151,5 @@ def edit(request, pk):
             return redirect('/')
     context = {
         'form': form,
-        'blogs': blogs,
     }
     return render(request, 'edit.html', context)

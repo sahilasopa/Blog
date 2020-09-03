@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('Blogsite', '0003_auto_20200811_2045'),
     ]

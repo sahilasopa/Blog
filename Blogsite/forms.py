@@ -1,5 +1,5 @@
 from django import forms
-from .models import BlogUser, Blog
+from .models import Blog
 
 
 class BlogEditForm(forms.ModelForm):
