@@ -11,7 +11,7 @@ urlpatterns = [
                   path('new/post', views.new_post),
                   path('blog/edit/<str:pk>/', views.edit, name='edit'),
                   path('my/blogs/', views.my_blogs, name='my_blog'),
-                  path('post/<str:name>/<str:pk>/', views.post),
+                  path('post/<str:pk>/', views.post),
                   path('login/', views.login),
                   path('logout/', views.logout),
                   path('delete/<str:pk>', views.delete, name='delete'),
