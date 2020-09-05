@@ -40,10 +40,10 @@ def contact(request):
 
 
 @login_required(login_url='/login')
-def post(request, pk, name):
+def post(request, pk):
     blogs = Blog.objects.all()
     user = BlogUser.objects.all()
-    blog = Blog.objects.get(id=pk, heading=name)
+    blog = Blog.objects.get(id=pk)
     context = {
         'user': user,
         'blog': blog,

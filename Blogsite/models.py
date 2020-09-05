@@ -24,7 +24,7 @@ class Blog(models.Model):
         return self.heading
 
     def get_absolute_url(self):
-        return f"/post/{self.heading}/{self.id}/"
+        return f"/post/{self.id}/"
 
 
 class Contact(models.Model):
