@@ -19,6 +19,9 @@ class Blog(models.Model):
     blog = RichTextField()
     image = models.ImageField(blank=True, null=True, upload_to='media')
     uploaded_on = models.DateTimeField(auto_now=True)
+    views = models.ManyToManyField(BlogUser, blank=True, related_name='Views')
+    likes = models.ManyToManyField(BlogUser, blank=True, related_name='Likes')
+    comments = models.CharField(blank=True, max_length=120)
 
     def __str__(self):
         return self.heading

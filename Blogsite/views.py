@@ -42,12 +42,31 @@ def contact(request):
 @login_required(login_url='/login')
 def post(request, pk):
     blogs = Blog.objects.all()
-    user = BlogUser.objects.all()
+    user = BlogUser.objects.get(user=request.user)
     blog = Blog.objects.get(id=pk)
+    blogger = Blog.objects.get(id=pk)
+    blogger.views.add(user)
+    views = blogger.views.count()
+    if request.method == 'POST':
+        if 'likes' in request.POST:
+            likes = request.POST['likes']
+            blogss = Blog.objects.get(id=pk)
+            if user in blog.likes.filter(user=request.user):
+                blogss.likes.remove(user)
+            else:
+                blogss.likes.add(user)
+    if user in blog.likes.filter(user=request.user):
+        x = True
+    else:
+        x = False
+    likes = blogger.likes.count()
     context = {
+        'x': x,
         'user': user,
+        'likes': likes,
         'blog': blog,
         'blogs': blogs,
+        'views': views,
     }
     return render(request, 'post.html', context)
 
