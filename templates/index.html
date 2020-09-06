@@ -51,8 +51,9 @@
                                 <h2 class="post-title">{{ blog.heading|safe }}</h2>
                                 <h3 class="post-subtitle">{{ blog.blog|truncatewords:5|safe }}</h3>
                             </a>
-                            <p class="post-meta">Posted by&nbsp;{{ blog.user }} on {{ blog.uploaded_on }}
-                            </p>
+                            <a href="{% url 'profile' blog.user.id %}" class="post-meta">Posted by&nbsp;{{ blog.user }}
+                                on {{ blog.uploaded_on }}
+                            </a>
                         </div>
                         <hr>
                     </div>

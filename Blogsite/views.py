@@ -172,3 +172,11 @@ def edit(request, pk):
         'form': form,
     }
     return render(request, 'edit.html', context)
+
+
+def profile(request, pk):
+    blogger = BlogUser.objects.get(id=pk)
+    context = {
+        'user': blogger,
+    }
+    return render(request, 'profile.html', context)

@@ -9,6 +9,9 @@ class BlogUser(models.Model):
     username = models.CharField(unique=True, max_length=15)
     email = models.EmailField(blank=True, unique=True)
 
+    def get_absolute_url(self):
+        return f'/profile/{self.id}'
+
     def __str__(self):
         return self.full_name
 
