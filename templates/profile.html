@@ -1,10 +1,74 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>My Blogs</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
 </head>
 <body>
-<h1>Profile of {{ user }}</h1>
+<nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+    <div class="container"><a class="navbar-brand" href="/">PyBlog</a>
+        <button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i
+                class="fa fa-bars"></i></button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/about">About us</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/contact">Contact us</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/new/post">Create a Blog Post</a>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/my/blogs">My Blogs</a>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/logout">Logout</a>
+            </ul>
+        </div>
+    </div>
+</nav>
+<header class="masthead" style='background-image:url("{% static 'assets/img/blog_writing.jpg' %}");'>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <div class="site-heading">
+                    <h2>{{ user.full_name }}'s Profile</h2><span class="subheading"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-lg-8 mx-auto">
+                <ul class="list-inline text-center">
+                    <a href="https://stackoverflow.com/users/13780862/sahil-asopa">
+                        <li class="list-inline-item"><span class="fa-stack fa-lg"><i
+                                class="fa fa-circle fa-stack-2x"></i><i
+                                class="fa fa-stack-overflow fa-stack-1x fa-inverse"></i></span></li>
+                    </a>
+                    <a href="https://www.instagram.com/pip_install_programming/">
+                        <li class="list-inline-item"><span class="fa-stack fa-lg"><i
+                                class="fa fa-circle fa-stack-2x"></i><i
+                                class="fa fa-instagram fa-stack-1x fa-inverse"></i></span></li>
+                    </a>
+                    <a href="https://github.com/sahilasopa">
+                        <li class="list-inline-item"><span class="fa-stack fa-lg"><i
+                                class="fa fa-circle fa-stack-2x"></i><i
+                                class="fa fa-github fa-stack-1x fa-inverse"></i></span></li>
+                    </a>
+                </ul>
+                <p class="text-muted copyright">Copyright&nbsp;©&nbsp;PyBlog 2020</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/clean-blog.js' %}"></script>
 </body>
 </html>
