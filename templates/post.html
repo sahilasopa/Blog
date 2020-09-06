@@ -58,7 +58,8 @@
                     <div class="post-heading">
                         <h1>{{ blog.heading|safe }}</h1>
                         <h2 class="subheading"></h2><span
-                            class="meta">Posted by&nbsp;{{ blog.user }}&nbsp;on {{ blog.uploaded_on }}</span>
+                            class="meta">
+                        <a href="{% url 'profile' blog.user.id %}">Posted by&nbsp;{{ blog.user }}&nbsp;on {{ blog.uploaded_on }}</a></span>
                         <hr style="border-color: antiquewhite">
                         <div class="stats" style="text-align: center">
                             <form method="post">
