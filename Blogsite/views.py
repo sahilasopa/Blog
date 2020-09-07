@@ -19,13 +19,16 @@ def home(request):
 
 @login_required(login_url='/login')
 def about(request):
-    return render(request, 'about.html')
+    user = BlogUser.objects.get(user=request.user)
+    context = {
+        'user': user,
+    }
+    return render(request, 'about.html', context)
 
 
 @login_required(login_url='/login')
 def contact(request):
-    user = BlogUser.objects.all()
-    blog = Blog.objects.all()
+    user = BlogUser.objects.get(user=request.user)
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -34,7 +37,6 @@ def contact(request):
         Contact.objects.create(name=name, email=email, contact_no=contact_no, message=message)
     context = {
         'user': user,
-        'blog': blog,
     }
     return render(request, 'contact.html', context)
 
@@ -74,6 +76,7 @@ def post(request, pk):
 @login_required(login_url='/login')
 def new_post(request):
     form = NewBlogForm()
+    user = BlogUser.objects.get(user=request.user)
     if request.method == 'POST':
         userss = request.user
         users = BlogUser.objects.get(user=userss)
@@ -85,7 +88,8 @@ def new_post(request):
             Blog.objects.create(blog=content, user=user, heading=title)
         return redirect('/')
     context = {
-        'form': form
+        'form': form,
+        'user': user,
     }
     return render(request, 'New Post.html', context)
 
@@ -95,12 +99,14 @@ def my_blogs(request):
     user = BlogUser.objects.get(user=request.user)
     blog = Blog.objects.filter(user=user)
     context = {
+        'user': user,
         'blog': blog,
     }
     return render(request, 'my_blog.html', context)
 
 
 def login(request):
+    user = BlogUser.objects.get(user=request.user)
     if request.method == 'POST':
         user = auth.authenticate(username=request.POST['username'], password=request.POST['pass'])
         if user is not None:
@@ -113,6 +119,7 @@ def login(request):
 
 
 def signup(request):
+    user = BlogUser.objects.get(user=request.user)
     if request.method == 'POST':
         if request.POST['password'] == request.POST['password-repeat']:
             try:
@@ -149,11 +156,13 @@ def logout(request):
 
 @login_required(login_url='/login')
 def delete(request, pk):
+    user = BlogUser.objects.get(user=request.user)
     blog = Blog.objects.get(id=pk)
     if request.method == 'POST':
         blog.delete()
         return redirect('/my/blogs/')
     context = {
+        'user': user,
         'blog': blog,
     }
     return render(request, 'delete.html', context)
@@ -161,6 +170,7 @@ def delete(request, pk):
 
 @login_required(login_url='/login')
 def edit(request, pk):
+    user = BlogUser.objects.get(user=request.user)
     blog = Blog.objects.get(id=pk)
     form = BlogEditForm(instance=blog)
     if request.method == 'POST':
@@ -169,6 +179,7 @@ def edit(request, pk):
             form.save()
             return redirect('/')
     context = {
+        'user': user,
         'form': form,
     }
     return render(request, 'edit.html', context)
