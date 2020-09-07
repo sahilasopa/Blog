@@ -195,7 +195,6 @@ def profile(request, pk):
 
     context = {
         'likes': likes,
-        'blog': blog,
         'followers': followers,
         'x': x,
         'user': blogger,
