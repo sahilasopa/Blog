@@ -106,7 +106,6 @@ def my_blogs(request):
 
 
 def login(request):
-    user = BlogUser.objects.get(user=request.user)
     if request.method == 'POST':
         user = auth.authenticate(username=request.POST['username'], password=request.POST['pass'])
         if user is not None:
@@ -119,7 +118,6 @@ def login(request):
 
 
 def signup(request):
-    user = BlogUser.objects.get(user=request.user)
     if request.method == 'POST':
         if request.POST['password'] == request.POST['password-repeat']:
             try:
@@ -193,18 +191,17 @@ def profile(request, pk):
             blogger.followers.remove(request.user)
         else:
             blogger.followers.add(request.user)
-            # request.user.following.add()
     if blogger.followers.filter(id=request.user.id).exists():
         x = True
     else:
         x = False
     followers = blogger.followers.count()
-    blogcount = Blog.objects.filter(user_id=pk).count()
+    BlogCount = Blog.objects.filter(user_id=pk).count()
     blogs = Blog.objects.filter(user_id=pk)
 
     context = {
         'blogs': blogs,
-        'blogcount': blogcount,
+        'blogcount': BlogCount,
         'followers': followers,
         'x': x,
         'user': blogger,
