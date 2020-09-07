@@ -8,7 +8,7 @@ from .forms import BlogEditForm, NewBlogForm
 
 @login_required(login_url='/login')
 def home(request):
-    user = BlogUser.objects.all()
+    user = BlogUser.objects.get(user=request.user)
     blog = Blog.objects.all().order_by('-id')[:1000]
     context = {
         'user': user,
@@ -175,7 +175,6 @@ def edit(request, pk):
 
 
 def profile(request, pk):
-    likes = None
     blogger = BlogUser.objects.get(id=pk)
     if request.method == 'POST':
         followers = blogger.followers.filter(id=pk)
@@ -183,18 +182,18 @@ def profile(request, pk):
             blogger.followers.remove(request.user)
         else:
             blogger.followers.add(request.user)
+            # request.user.following.add()
     if blogger.followers.filter(id=request.user.id).exists():
         x = True
     else:
         x = False
     followers = blogger.followers.count()
-    blog = Blog.objects.filter(user_id=pk)
-    for likes in blog:
-        likes = (likes.likes.count())
-    blog = Blog.objects.filter(user_id=pk).count()
+    blogcount = Blog.objects.filter(user_id=pk).count()
+    blogs = Blog.objects.filter(user_id=pk)
 
     context = {
-        'likes': likes,
+        'blogs': blogs,
+        'blogcount': blogcount,
         'followers': followers,
         'x': x,
         'user': blogger,
