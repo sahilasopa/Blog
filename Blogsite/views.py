@@ -175,8 +175,29 @@ def edit(request, pk):
 
 
 def profile(request, pk):
+    likes = None
     blogger = BlogUser.objects.get(id=pk)
+    if request.method == 'POST':
+        followers = blogger.followers.filter(id=pk)
+        if blogger.followers.filter(id=request.user.id).exists():
+            blogger.followers.remove(request.user)
+        else:
+            blogger.followers.add(request.user)
+    if blogger.followers.filter(id=request.user.id).exists():
+        x = True
+    else:
+        x = False
+    followers = blogger.followers.count()
+    blog = Blog.objects.filter(user_id=pk)
+    for likes in blog:
+        likes = (likes.likes.count())
+    blog = Blog.objects.filter(user_id=pk).count()
+
     context = {
+        'likes': likes,
+        'blog': blog,
+        'followers': followers,
+        'x': x,
         'user': blogger,
     }
     return render(request, 'profile.html', context)

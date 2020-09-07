@@ -8,6 +8,8 @@ class BlogUser(models.Model):
     full_name = models.CharField(max_length=52)
     username = models.CharField(unique=True, max_length=15)
     email = models.EmailField(blank=True, unique=True)
+    followers = models.ManyToManyField(User, blank=True, related_name='followers')
+    following = models.ManyToManyField(User, blank=True, related_name='following')
 
     def get_absolute_url(self):
         return f'/profile/{self.id}'
