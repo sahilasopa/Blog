@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
-from .models import BlogUser, Blog, Contact
 from django.contrib import auth
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 from .forms import BlogEditForm, NewBlogForm
+from .models import BlogUser, Blog, Contact
 
 
 @login_required(login_url='/login')
@@ -51,7 +51,6 @@ def post(request, pk):
     views = blogger.views.count()
     if request.method == 'POST':
         if 'likes' in request.POST:
-            likes = request.POST['likes']
             blogss = Blog.objects.get(id=pk)
             if user in blog.likes.filter(user=request.user):
                 blogss.likes.remove(user)
@@ -141,7 +140,7 @@ def signup(request):
                 auth.login(request, user)
                 return redirect('/')
         else:
-            return render(request, 'register.html', {'error': 'Password dosent match'})
+            return render(request, 'register.html', {"error': 'Password doesn't match"})
     else:
         return render(request, 'register.html')
 
@@ -186,7 +185,6 @@ def edit(request, pk):
 def profile(request, pk):
     blogger = BlogUser.objects.get(id=pk)
     if request.method == 'POST':
-        followers = blogger.followers.filter(id=pk)
         if blogger.followers.filter(id=request.user.id).exists():
             blogger.followers.remove(request.user)
         else:
@@ -201,7 +199,7 @@ def profile(request, pk):
 
     context = {
         'blogs': blogs,
-        'blogcount': BlogCount,
+        'BlogCount': BlogCount,
         'followers': followers,
         'x': x,
         'user': blogger,
