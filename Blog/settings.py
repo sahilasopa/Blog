@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'whfd51$t(bluz(f#akirc&ugf6v^td62+%%rm+_@!k0uqj0fx('
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -137,6 +137,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sahilasopa12@gmail.com'
 EMAIL_HOST_PASSWORD = 'Asopa@2091'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
