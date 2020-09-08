@@ -65,7 +65,7 @@
                         <div class="stats" style="text-align: center">
                             <form method="post">
                                 {% csrf_token %}
-                                {{ views }} <i class="fa fa-eye" aria-hidden="true"></i>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ views }} <i class="fa fa-eye" aria-hidden="true"></i>
                                 {% if x %}
                                     <label for="like-post">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ likes }} <i
                                             class="fa fa-heart"
@@ -75,8 +75,6 @@
                                             class="fa fa-heart-o"
                                             aria-hidden="true"></i></label>
                                 {% endif %}
-                                <label for="comment-post">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1<i class="fa fa-comment-o"
-                                                                                            aria-hidden="true"></i></label><br>
                                 <input type="submit" id="like-post" name="likes" style="visibility: hidden">
                             </form>
                         </div>
