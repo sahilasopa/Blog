@@ -1,5 +1,5 @@
-from pathlib import Path
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'whfd51$t(bluz(f#akirc&ugf6v^td62+%%rm+_@!k0uqj0fx('
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -135,7 +135,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sahilasopa12@gmail.com'
-EMAIL_HOST_PASSWORD = 'Asopa@2091'
-
+EMAIL_HOST_PASSWORD = 'my password'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
